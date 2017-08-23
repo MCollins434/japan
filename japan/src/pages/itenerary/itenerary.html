@@ -17,9 +17,12 @@
 
 
 <ion-content padding>
-  <button ion-item *ngFor="let e of events">
-    <div item-right>
-      {{e.title}}
-    </div>
+  <ion-list inset>
+    <button ion-item *ngFor="let todo of currentTodos" (click)="openDetails(todo)">
+      <div>
+      9/{{todo.day}}   {{todo.time}}
+      <b>{{todo.name}}</b>
+      </div>
   </button>
+  </ion-list>
 </ion-content>

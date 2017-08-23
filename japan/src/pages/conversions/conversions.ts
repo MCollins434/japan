@@ -13,12 +13,19 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'conversions.html',
 })
 export class ConversionsPage {
-
+  celcious: string;
+  km: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConversionsPage');
+  }
+
+  onKey(value: string) {
+    let f: number;
+    f = +value as number;
+    this.celcious = ''+ (f - 32 * (5 / 9));
   }
 
 }

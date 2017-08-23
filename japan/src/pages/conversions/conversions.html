@@ -17,5 +17,9 @@
 
 
 <ion-content padding>
-
+  <p>Temp in F:</p><input #box (keyup)="onKey(box.value)">
+  <p>Temp in C: {{celcious}}</p>
+  <br />
+  <p>Distance in Miles: </p><input #distbox (keyup)="onKey(distbox.value)">
+  <p>Distance in KM: {{km}}</p>
 </ion-content>

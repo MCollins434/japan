@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Todo, TodoDetails } from '../../models/todo';
+import { TodoDetailsPage } from '../tododetails/tododetails';
+import { TodosProvider } from '../../providers/todos/todos';
 
 /**
  * Generated class for the IteneraryPage page.
@@ -13,18 +16,20 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'itenerary.html',
 })
 export class IteneraryPage {
-  events: Array<{title: string, time: Date, place: string}>;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.events = [];
-    this.events.push({
-      title: 'Flight DCA to CHG',
-      time: new Date(2017,9,4,8,30),
-      place: 'Reagan'
-    });
+  currentTodos: Todo[];
+
+  constructor(public navCtrl: NavController, public todos: TodosProvider, public navParams: NavParams) {
+    this.currentTodos = this.todos.query();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IteneraryPage');
+  }
+
+  openDetails(todo: Todo) {
+    this.navCtrl.push(TodoDetailsPage, {
+      todo: todo
+    });
   }
 
 }
