@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-import { TodosProvider } from '../../providers/todos/todos';
+import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-tododetails',
@@ -10,7 +8,7 @@ import { TodosProvider } from '../../providers/todos/todos';
 export class TodoDetailsPage {
   todo: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, todos: TodosProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.todo = navParams.get('todo');
   }
 

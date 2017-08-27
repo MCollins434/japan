@@ -13,19 +13,27 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'conversions.html',
 })
 export class ConversionsPage {
-  celcious: string;
-  km: string;
+  farht: string;
+  usd: string;
+  miles: string;
+  celc: number;
+  yen: number;
+  km: number;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConversionsPage');
+    this.yen = 500;
+    this.celc = 30;
+    this.km = 5;
+    this.convert();
   }
 
-  onKey(value: string) {
-    let f: number;
-    f = +value as number;
-    this.celcious = ''+ (f - 32 * (5 / 9));
+  convert() {
+    this.farht = ''+ (((this.celc * 9) / 5) + 32).toFixed(2);
+    this.miles = '' + (this.km * 0.62137119).toFixed(2);
+    this.usd = '' + (this.yen * 0.0091);
   }
-
 }

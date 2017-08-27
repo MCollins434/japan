@@ -18,13 +18,29 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let word of words">
-      <div item-left>
-        {{word.english}}
-      </div>
-      <div item-right>
-        {{word.japanese}}
-      </div>
-    </button>
+    <ion-list-header>
+      Phrases
+    </ion-list-header>
+    <ion-item *ngFor="let word of phrases">
+      {{word.english}} =/= {{word.japanese}}
+      <br>
+      <p>{{word.jchars}}</p>
+    </ion-item>
+    <ion-list-header>
+      Food
+    </ion-list-header>
+    <ion-item *ngFor="let word of foods">
+      {{word.english}} =/= {{word.japanese}}
+      <br>
+      <p>{{word.jchars}}</p>
+    </ion-item>
+    <ion-list-header>
+      Numbers
+    </ion-list-header>
+    <ion-item *ngFor="let word of numbers">
+      {{word.english}} =/= {{word.japanese}}
+      <br>
+      <p>{{word.jchars}}</p>
+    </ion-item>
   </ion-list>
 </ion-content>

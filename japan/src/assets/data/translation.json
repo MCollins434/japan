@@ -1,0 +1,213 @@
+[
+    {
+        "category": "food",
+        "english": "beef"
+    },
+    {
+        "category": "food",
+        "english": "chicken"
+    },
+    {
+        "category": "food",
+        "english": "pork"
+    },
+    {
+        "category": "food",
+        "english": "seafood"
+    },
+    {
+        "category": "food",
+        "english": "tuna"
+    },
+    {
+        "category": "food",
+        "english": "crab"
+    },
+    {
+        "category": "food",
+        "english": "eel"
+    },
+    {
+        "category": "food",
+        "english": "egg"
+    },
+    {
+        "category": "food",
+        "english": "salmon"
+    },
+    {
+        "category": "food",
+        "english": "sushi"
+    },
+    {
+        "category": "food",
+        "english": "food"
+    },
+    {
+        "category": "numbers",
+        "english": "one"
+    },
+    {
+        "category": "numbers",
+        "english": "two"
+    },
+    {
+        "category": "numbers",
+        "english": "three"
+    },
+    {
+        "category": "numbers",
+        "english": "four"
+    },
+    {
+        "category": "numbers",
+        "english": "five"
+    },
+    {
+        "category": "numbers",
+        "english": "six"
+    },
+    {
+        "category": "numbers",
+        "english": "seven"
+    },
+    {
+        "category": "numbers",
+        "english": "eight"
+    },
+    {
+        "category": "numbers",
+        "english": "nine"
+    },
+    {
+        "category": "numbers",
+        "english": "ten"
+    },
+    {
+        "category": "numbers",
+        "english": "fifty"
+    },
+    {
+        "category": "numbers",
+        "english": "one hundred"
+    },
+    {
+        "category": "numbers",
+        "english": "one thousand"
+    },
+    {
+        "category": "food",
+        "english": "beer"
+    },
+    {
+        "category": "food",
+        "english": "wine"
+    },
+    {
+        "category": "food",
+        "english": "whiskey"
+    },
+    {
+        "category": "phrases",
+        "english": "Thank You",
+        "jchars": "ありがとうございます"
+    },
+    {
+        "category": "phrases",
+        "english": "Please",
+        "japanese": "kudasai",
+        "jchars": "ください"
+    },
+    {
+        "category": "phrases",
+        "english": "Where is the bathroom?"
+    },
+    {
+        "category": "phrases",
+        "english": "More"
+    },
+    {
+        "category": "phrases",
+        "english": "Good morning!",
+        "japanese": "ohayou gozaimasu",
+        "jchars": "おはようございます"
+    },
+    {
+        "category": "phrases",
+        "english": "Hello / Good afternoon!",
+        "japanese": "konnichiwa",
+        "jchars": "こんにちは"
+    },
+    {
+        "category": "phrases",
+        "english": "See you!",
+        "japanese": "jaa mata",
+        "jchars": "じゃあまた"
+    },
+    {
+        "category": "phrases",
+        "english": "What’s your name?",
+        "japanese": "o namae wa nan desu ka",
+        "jchars": "お名前は何ですか？"
+    },
+    {
+        "category": "phrases",
+        "english": "I like it.",
+        "japanese": "suki desu ",
+        "jchars": "好きです"
+    },
+    {
+        "category": "phrases",
+        "english": "It’s good.",
+        "japanese": "ii desu yo",
+        "jchars": "いいですよ"
+    },
+    {
+        "category": "phrases",
+        "english": "Please say it again.",
+        "japanese": "mou ichidou itte kudasai ",
+        "jchars": "もう一度言ってください"
+    },
+    {
+        "category": "phrases",
+        "english": "Please bring me a menu.",
+        "japanese": "menyuu, onegaishimasu",
+        "jchars": "メニュー、お願いします"
+    },
+    {
+        "category": "phrases",
+        "english": "What’s that?",
+        "japanese": "sore wa nan desu ka",
+        "jchars": "それは何ですか？"
+    },
+    {
+        "category": "phrases",
+        "english": "I'm a silly vegetarian",
+        "japanese": "niku ga taberaremasen ",
+        "jchars": "肉が食べられません"
+    },
+    {
+        "category": "phrases",
+        "english": "It’s delicious!",
+        "japanese": "oishii desu",
+        "jchars": "おいしいです"
+    },
+    {
+        "category": "phrases",
+        "english": "I’d like a coffee, please",
+        "japanese": "koohii o kudasai",
+        "jchars": "コーヒーをください"
+    },
+    {
+        "category": "phrases",
+        "english": "How much is this?",
+        "japanese": "kore wa ikura desu ka",
+        "jchars": "これはいくらですか？"
+    },
+    {
+        "category": "phrases",
+        "english": "Can I use my credit card?",
+        "japanese": "kurejitto kaado wa tsukaemasu ka ",
+        "jchars": "クレジットカードは使えますか？"
+    }
+]

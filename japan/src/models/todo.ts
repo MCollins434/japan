@@ -3,12 +3,6 @@ export class Todo {
     day: number;
     time?: string;
     details?: TodoDetails;
-
-    constructor(private fields: any) {
-        for (let f in fields) {
-            this[f] = fields[f];
-        }
-    }
 }
 
 export class TodoDetails {

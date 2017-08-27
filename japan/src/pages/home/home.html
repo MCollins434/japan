@@ -8,11 +8,24 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Japan!!</h3>
+  <h1>COME ON AND SLAM AND WELCOME TO JAPAN</h1>
 
-  <p>
-    Hopefully more details than you need.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <b>App Version</b>
+  <p>{{appversion}}</p>
+  <b>Db Version</b>
+  <p>{{dbversion}}</p>
+  <b>Connection Status</b>
+  <p>{{connectionstatus}}</p>
+  <b>Platforms Identified</b>
+  <div *ngFor="let plt of plats">
+    {{plt}}
+  </div>
+  <div padding>
+    <button ion-button color="primary" block (click)="_tryRefresh()">Get Updated Data</button>
+  </div>
+  <ion-list>
+    <div *ngFor="let msg of msgs">
+      {{msg}}
+    </div>
+  </ion-list>
 </ion-content>

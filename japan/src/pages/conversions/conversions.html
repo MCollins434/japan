@@ -17,9 +17,27 @@
 
 
 <ion-content padding>
-  <p>Temp in F:</p><input #box (keyup)="onKey(box.value)">
-  <p>Temp in C: {{celcious}}</p>
+  <h4>Make Numbers 'Merican</h4>
+  <p>Assuming an exchange rate of 1 USD = 109.41 JPY</p>
   <br />
-  <p>Distance in Miles: </p><input #distbox (keyup)="onKey(distbox.value)">
-  <p>Distance in KM: {{km}}</p>
+  <ion-list>
+
+    <ion-item>
+      <ion-label fixed>JPY:</ion-label>
+      <ion-input type="number" [(ngModel)]="yen" (keyup)="convert()"></ion-input>
+    </ion-item>
+    <ion-item>USD:&nbsp;{{usd | currency:'USD':true}}</ion-item>
+    <br>
+    <ion-item>
+      <ion-label>KM:</ion-label>
+      <ion-input type="number" [(ngModel)]="km" (keyup)="convert()"></ion-input>
+    </ion-item>
+    <ion-item>Miles:&nbsp;&nbsp;{{miles}}</ion-item>
+    <br>
+    <ion-item>
+      <ion-label fixed>Celsius: </ion-label>
+      <ion-input type="number" [(ngModel)]="celc" (keyup)="convert()"></ion-input>
+    </ion-item>
+    <ion-item>Fahrenheit:&nbsp;{{farht}}</ion-item>
+  </ion-list>
 </ion-content>

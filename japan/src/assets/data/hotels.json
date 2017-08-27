@@ -1,0 +1,64 @@
+[
+    {
+        "name": "Wise Owl Hostels Tokyo",
+        "city": "Tokyo",
+        "dayin": 5,
+        "dayout": 6,
+        "email": "hachi@wiseowlhostels.com",
+        "in": 0.625,
+        "out": 0.4166666666666667,
+        "confirmation": "268185-314893388",
+        "paidadv": "partial",
+        "site": "HostelWorld"
+    },
+    {
+        "name": "Hotel Musashiya",
+        "city": "Hakone",
+        "dayin": 6,
+        "dayout": 8,
+        "address": "Motohakone20, Hakone 250-0522",
+        "phone": 81460836348,
+        "in": 0.5833333333333334,
+        "out": 0.4166666666666667,
+        "site": "Hotels.com"
+    },
+    {
+        "name": "Hiroshima Washington Hotel",
+        "city": "Hiroshima",
+        "dayin": 8,
+        "dayout": 9,
+        "address": "2-10 Shintenchi Nakaku, Hiroshima, 730-0034",
+        "japaddress": "日本\n730-0034\n広島県\n広島市\n中区新天地 2-7",
+        "phone": 81825532222,
+        "in": 0.5833333333333334,
+        "out": 0.4583333333333333,
+        "confirmation": 140745139219,
+        "paidadv": "full",
+        "site": "Hotels.com"
+    },
+    {
+        "name": "Backpackers Hostel K's House",
+        "city": "Kyoto",
+        "dayin": 9,
+        "dayout": 11,
+        "address": "418 Nayachou Shichijo-agaru, Dotemachi-dori, Shyimogyo-ku, Kyoto",
+        "phone": 81753422444,
+        "email": "kyoto@kshouse.jp",
+        "confirmation": "5536-322678100",
+        "paidadv": "partial",
+        "site": "HostelWorld"
+    },
+    {
+        "name": "Shinjuku-ku",
+        "city": "Tokyo",
+        "dayin": 11,
+        "dayout": 18,
+        "address": "5 Chome-8-10 Shinjuku",
+        "phone": 817041020423,
+        "in": 0.625,
+        "out": 0.4583333333333333,
+        "confirmation": "HM4ZRFCWQ8",
+        "paidadv": "full",
+        "site": "AirBnB"
+    }
+]
