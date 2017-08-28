@@ -10,6 +10,7 @@ export class DbProvider {
     console.log('Hello DbProvider Provider');
   }
 
+  public 
   public setFallbacks(): void {
     let flights = this.data.getFlights(true);
     let appversion = this.data.getAppVersion(true);
