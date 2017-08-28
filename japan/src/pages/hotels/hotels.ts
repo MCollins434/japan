@@ -4,7 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import Hotel from '../../models/hotel';
 import { HotelDetailsPage } from '../hoteldetails/hoteldetails';
 
-import { LocalsProvider } from '../../providers/locals';
+import { DataProvider } from '../../providers/data';
 
 @Component({
   selector: 'page-hotels',
@@ -13,14 +13,14 @@ import { LocalsProvider } from '../../providers/locals';
 export class HotelsPage {
   hotels: Hotel[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public locals: LocalsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public data: DataProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HotelsPage');
-    this.locals.getHotels().subscribe(response => {
+    this.data.getHotels().then((response) => {
       this.hotels = response;
-    }, err => {
+    }, (err) => {
       console.log(err);
     });
   }

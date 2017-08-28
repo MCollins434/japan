@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
 import { Deploy } from '@ionic/cloud-angular';
+//import { File } from '@ionic-native/file';
 
-import { LocalsProvider } from '../../providers/locals';
+import { DataProvider } from '../../providers/data';
+
 
 @Component({
   selector: 'page-home',
@@ -17,16 +19,25 @@ export class HomePage {
   connectionstatus: string;
   plats: string[];
   msgs: string[];
+  dataDir: string;
+  freeSpace: string;
+  appDir: string;
 
-  constructor(public navCtrl: NavController, public locals: LocalsProvider,
+  constructor(public navCtrl: NavController, public data: DataProvider, //private file: File,
     private network: Network, public platform: Platform, public deploy: Deploy) {
     this.msgs = [];
+    this.plats = this.platform.platforms();
+    /*if(!this.platform.is('cordova')){
+      this.dataDir = this.file.dataDirectory;
+      this.appDir = this.file.applicationDirectory;
+      this.file.getFreeDiskSpace().then((value) => {
+        this.freeSpace = ''+value;
+      });*/
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
-    this.plats = this.platform.platforms();
-
     if (navigator.onLine) {
       this._setConn("online");
     }
@@ -74,20 +85,14 @@ export class HomePage {
   }
 
   private _getDbVersion() {
-    this.locals.getDbVersion().subscribe(response => {
-      console.log(JSON.stringify(response));
-      this.dbversion = response[0].version;
-    }, err => {
-      console.log(err);
+    this.data.getDbVersion().then((resp) => {
+      this.dbversion = resp[0].version;
     });
   }
 
   private _getAppVersion() {
-    this.locals.getAppVersion().subscribe(response => {
-      console.log(JSON.stringify(response));
-      this.appversion = response[0].version;
-    }, err => {
-      console.log(err);
+    this.data.getAppVersion().then((resp) => {
+      this.appversion = resp[0].version;
     });
   }
 

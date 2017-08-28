@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { Do, Dont } from '../../models/dosdonts';
-import { LocalsProvider } from '../../providers/locals';
+import { DataProvider } from '../../providers/data';
 
 @Component({
   selector: 'page-customs',
@@ -12,23 +12,17 @@ export class CustomsPage {
   dos: Do[];
   donts: Dont[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public locals: LocalsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public data: DataProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CustomsPage');
     
-    this.locals.getDos().subscribe(response => {
-      this.dos = response;
-    }, err => {
-      console.log(err);
+    this.data.getDos().then((resp) => {
+      this.dos = resp;
     });
-
-    this.locals.getDonts().subscribe(response => {
-      this.donts = response;
-    }, err => {
-      console.log(err);
+    this.data.getDonts().then((resp) => {
+      this.donts = resp;
     });
   }
-
 }

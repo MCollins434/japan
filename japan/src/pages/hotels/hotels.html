@@ -16,7 +16,7 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let hotel of hotels" (click)="openDetails(hotel)">
+    <button ion-item text-wrap *ngFor="let hotel of hotels" (click)="openDetails(hotel)">
           <div>
             <b>{{hotel.name}}</b><br>
             {{hotel.city}}, 9/{{hotel.dayin}} - 9/{{hotel.dayout}}

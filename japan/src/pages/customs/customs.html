@@ -14,15 +14,15 @@
   <ion-item-group>
     <ion-item-divider color="light">Do</ion-item-divider>
     <ion-item *ngFor="let do of dos">
-      <h5>{{do.summary}}</h5>
+      <b>{{do.summary}}</b>
       <p>{{do.description}}</p>
     </ion-item>
   </ion-item-group>
 
   <ion-item-group>
     <ion-item-divider color="dark">Dont</ion-item-divider>
-    <ion-item *ngFor="let dont of donts">
-      <h5>{{dont.summary}}</h5>
+    <ion-item text-wrap *ngFor="let dont of donts">
+      <b>{{dont.summary}}</b>
       <p>{{dont.description}}</p>
     </ion-item>
   </ion-item-group>

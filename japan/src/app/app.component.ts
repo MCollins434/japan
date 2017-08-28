@@ -7,9 +7,13 @@ import { HomePage } from '../pages/home/home';
 import { TranslationsPage } from '../pages/translations/translations';
 import { CustomsPage } from '../pages/customs/customs';
 import { ConversionsPage } from '../pages/conversions/conversions';
-import { IteneraryPage } from '../pages/itenerary/itenerary';
 import { PlacesPage } from '../pages/places/places';
 import { HotelsPage } from '../pages/hotels/hotels';
+import { FlightsPage } from '../pages/flights/flights';
+import { LinksPage } from '../pages/links/links';
+import { DocsPage } from '../pages/docs/docs';
+
+import { DbProvider } from '../providers/db/db';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,34 +25,37 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar,
+    public splashScreen: SplashScreen, private db: DbProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
+      { title: 'Places', component: PlacesPage },
+      { title: 'Flights', component: FlightsPage },
       { title: 'Hotels', component: HotelsPage },
+      { title: 'Links', component: LinksPage },
+      { title: 'Docs', component: DocsPage },
       { title: 'Translations', component: TranslationsPage },
       { title: 'Customs', component: CustomsPage },
-      { title: 'Conversions', component: ConversionsPage },
-      { title: 'Itenerary', component: IteneraryPage },
-      { title: 'Places', component: PlacesPage }
+      { title: 'Conversions', component: ConversionsPage }
     ];
 
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.db.setFallbacks();
+      if(navigator.onLine){
+        this.db.setLatest();
+      }
     });
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
 }

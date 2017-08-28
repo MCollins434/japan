@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import Word from '../../models/word';
-import { LocalsProvider } from '../../providers/locals';
+import { DataProvider } from '../../providers/data';
 
 @Component({
   selector: 'page-translations',
@@ -10,30 +10,45 @@ import { LocalsProvider } from '../../providers/locals';
 })
 export class TranslationsPage {
   words: Word[];
-  foods: Word[];
-  phrases: Word[];
-  numbers: Word[];
+  foodWords: Word[];
+  phraseWords: Word[];
+  numberWords: Word[];
+  otherWords: Word[];
+  food: string = "food";
+  phrase: string = "phrase";
+  number: string = "number";
+  s: string = "S".toUpperCase();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public locals: LocalsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public data: DataProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TranslationsPage');
-    this.locals.getTranslations().subscribe(response => {
+    this.data.getTranslations().then((response) => {
       this.words = response;
+      this.foodWords = this.words.filter((word) =>
+        word.category.toUpperCase() == this.food.toUpperCase() ||
+        word.category.toUpperCase() == this.food.toUpperCase() + this.s
+      );
 
-      this.foods = this.words.filter((word) =>
-        word.category == 'food');
+      this.phraseWords = this.words.filter((word) =>
+        word.category.toUpperCase() == this.phrase.toUpperCase() ||
+        word.category.toUpperCase() == this.phrase.toUpperCase() + this.s
+      );
 
-      this.phrases = this.words.filter((word) =>
-        word.category == 'phrases');
+      this.numberWords = this.words.filter((word) =>
+        word.category.toUpperCase() == this.number.toUpperCase() ||
+        word.category.toUpperCase() == this.number.toUpperCase() + this.s
+      );
 
-      this.numbers = this.words.filter((word) =>
-        word.category == "number");
-
-    }, err => {
-      console.log(err);
-    });
+      this.otherWords = this.words.filter((word) => {
+        word.category.toUpperCase() != this.food.toUpperCase()
+        && word.category.toUpperCase() != this.food.toUpperCase() + this.s
+        && word.category.toUpperCase() != this.phrase.toUpperCase()
+        && word.category.toUpperCase() != this.phrase.toUpperCase()+ this.s
+        && word.category.toUpperCase() != this.number.toUpperCase()
+        && word.category.toUpperCase() != this.number.toUpperCase()+ this.s
+      });
+    }, (err) => { console.log(err); });
   }
-
 }

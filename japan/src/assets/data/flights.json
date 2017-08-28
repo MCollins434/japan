@@ -1,0 +1,34 @@
+[
+    {
+        "from": "DCA",
+        "to": "ORD",
+        "day": 4,
+        "depart": "@ 8:05 AM",
+        "arrive": "@ 9:27 AM",
+        "number": "AA1111"
+    },
+    {
+        "from": "ORD",
+        "to": "NRT",
+        "day": 4,
+        "depart": "@ 12:45 PM",
+        "arrive": "@ 3:55 PM",
+        "number": "AA153"
+    },
+    {
+        "from": "NRT",
+        "to": "ORD",
+        "day": 18,
+        "depart": "@ 5:55 PM",
+        "arrive": "@ 3:40 PM",
+        "number": "AA154"
+    },
+    {
+        "from": "ORD",
+        "to": "DCA",
+        "day": 18,
+        "depart": "@ 6:21 PM",
+        "arrive": "@ 9:23 PM",
+        "number": "AA2676"
+    }
+]

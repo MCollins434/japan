@@ -2,23 +2,23 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the PlacesPage page.
+ * Generated class for the DocsPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 
 @Component({
-  selector: 'page-places',
-  templateUrl: 'places.html',
+  selector: 'page-docs',
+  templateUrl: 'docs.html',
 })
-export class PlacesPage {
+export class DocsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PlacesPage');
+    console.log('ionViewDidLoad DocsPage');
   }
 
 }

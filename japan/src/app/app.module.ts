@@ -3,7 +3,8 @@ import { HttpModule } from '@angular/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
-
+import { IonicStorageModule } from '@ionic/storage';
+import { File } from '@ionic-native/file';
 import { Network } from '@ionic-native/network';
 
 import { MyApp } from './app.component';
@@ -11,15 +12,18 @@ import { HomePage } from '../pages/home/home';
 import { TranslationsPage } from '../pages/translations/translations';
 import { CustomsPage } from '../pages/customs/customs';
 import { ConversionsPage } from '../pages/conversions/conversions';
-import { IteneraryPage } from '../pages/itenerary/itenerary';
-import { TodoDetailsPage } from '../pages/tododetails/tododetails';
 import { PlacesPage } from '../pages/places/places';
 import { HotelsPage } from '../pages/hotels/hotels';
 import { HotelDetailsPage } from '../pages/hoteldetails/hoteldetails';
+import { FlightsPage } from '../pages/flights/flights';
+import { LinksPage } from '../pages/links/links';
+import { DocsPage } from '../pages/docs/docs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { LocalsProvider } from '../providers/locals';
+
+import { DbProvider } from '../providers/db/db';
+import { DataProvider } from '../providers/data';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -34,17 +38,19 @@ const cloudSettings: CloudSettings = {
     TranslationsPage,
     CustomsPage,
     ConversionsPage,
-    IteneraryPage,
-    TodoDetailsPage,
     PlacesPage,
     HotelsPage,
-    HotelDetailsPage
+    HotelDetailsPage,
+    FlightsPage,
+    DocsPage,
+    LinksPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    CloudModule.forRoot(cloudSettings)
+    CloudModule.forRoot(cloudSettings),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -53,18 +59,22 @@ const cloudSettings: CloudSettings = {
     TranslationsPage,
     CustomsPage,
     ConversionsPage,
-    IteneraryPage,
-    TodoDetailsPage,
     PlacesPage,
     HotelsPage,
-    HotelDetailsPage
+    HotelDetailsPage,
+    FlightsPage,
+    DocsPage,
+    LinksPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    LocalsProvider,
-    Network
+    Network,
+    File,
+    DataProvider,
+    DbProvider,
+    Storage
   ]
 })
 export class AppModule {}

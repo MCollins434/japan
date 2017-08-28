@@ -13,14 +13,20 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'conversions.html',
 })
 export class ConversionsPage {
+  rate: number = 0.0091;
   farht: string;
-  usd: string;
+  usd: number;
   miles: string;
   celc: number;
   yen: number;
   km: number;
+  cs: {usd: number, yen: number}[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    let yens = [500, 1000, 2000,3000,4000, 5000, 10000, 12000,15000, 20000];
+    yens.map((yen) => {
+      this.cs.push({usd: this.getUSD(yen), yen: yen});
+    });
   }
 
   ionViewDidLoad() {
@@ -31,9 +37,12 @@ export class ConversionsPage {
     this.convert();
   }
 
+  getUSD(yen: any): number {
+    return yen * this.rate;
+  }
   convert() {
     this.farht = ''+ (((this.celc * 9) / 5) + 32).toFixed(2);
     this.miles = '' + (this.km * 0.62137119).toFixed(2);
-    this.usd = '' + (this.yen * 0.0091);
+    this.usd = this.getUSD(this.yen);
   }
 }
