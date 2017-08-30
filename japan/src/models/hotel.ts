@@ -12,4 +12,5 @@ export default class Hotel {
     paidadv?: string;
     site?: string;
     confirmation?: string;
+    nearestStation?: string;
 }

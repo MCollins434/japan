@@ -1,23 +1,21 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { DbProvider } from '../../providers/db/db';
+import { DataProvider } from '../../providers/data';
 
 @Component({
   selector: 'page-links',
   templateUrl: 'links.html',
 })
 export class LinksPage {
+  links: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DbProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public data: DataProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LinksPage');
-    console.log("FALLBACKS");
-    this.db.printFallbacks();
-    console.log("LATEST");
-    this.db.printLatest();
+    this.links = this.data.getLinks();
   }
 
 }

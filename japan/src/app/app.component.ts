@@ -13,7 +13,7 @@ import { FlightsPage } from '../pages/flights/flights';
 import { LinksPage } from '../pages/links/links';
 import { DocsPage } from '../pages/docs/docs';
 
-import { DbProvider } from '../providers/db/db';
+import { DataProvider } from '../providers/data';
 
 @Component({
   templateUrl: 'app.html'
@@ -26,7 +26,7 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar,
-    public splashScreen: SplashScreen, private db: DbProvider) {
+    public splashScreen: SplashScreen, private db: DataProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -49,9 +49,6 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.db.setFallbacks();
-      if(navigator.onLine){
-        this.db.setLatest();
-      }
     });
   }
 

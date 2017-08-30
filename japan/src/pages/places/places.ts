@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { PlaceDetailPage } from '../placedetail/placedetail';
 import Place from '../../models/place';
 import { DataProvider } from '../../providers/data';
 
@@ -32,12 +33,16 @@ export class PlacesPage {
       this.hakonePlaces = this.places.filter((place) => place.city.toUpperCase() == this.hakone.toUpperCase());
       this.hiroshimaPlaces = this.places.filter((place) => place.city.toUpperCase() == this.hiroshima.toUpperCase());
       this.kyotoPlaces = this.places.filter((place) => place.city.toUpperCase() == this.kyoto.toUpperCase());
-      this.otherPlaces = this.places.filter((place) => 
-      place.city.toUpperCase() != this.tokyo.toUpperCase() &&
-      place.city.toUpperCase() != this.hakone.toUpperCase() &&
-      place.city.toUpperCase() != this.hiroshima.toUpperCase() &&
-      place.city.toUpperCase() != this.kyoto.toUpperCase() );
+      this.otherPlaces = this.places.filter((place) =>
+        place.city.toUpperCase() != this.tokyo.toUpperCase() &&
+        place.city.toUpperCase() != this.hakone.toUpperCase() &&
+        place.city.toUpperCase() != this.hiroshima.toUpperCase() &&
+        place.city.toUpperCase() != this.kyoto.toUpperCase());
     });
   }
-
+  getDetail(place: Place) {
+    this.navCtrl.push(PlaceDetailPage, {
+      place: place
+    });
+  }
 }

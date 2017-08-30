@@ -6,7 +6,6 @@ import { Deploy } from '@ionic/cloud-angular';
 
 import { DataProvider } from '../../providers/data';
 
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -23,10 +22,11 @@ export class HomePage {
   freeSpace: string;
   appDir: string;
 
-  constructor(public navCtrl: NavController, public data: DataProvider, //private file: File,
+  constructor(public navCtrl: NavController, public data: DataProvider,
     private network: Network, public platform: Platform, public deploy: Deploy) {
     this.msgs = [];
     this.plats = this.platform.platforms();
+    this._getDbVersion();
     /*if(!this.platform.is('cordova')){
       this.dataDir = this.file.dataDirectory;
       this.appDir = this.file.applicationDirectory;
@@ -80,8 +80,12 @@ export class HomePage {
   _tryRefresh() {
     this.msgs.push("Trying refresh...");
     this.msgs.push("Checking network connection...");
-    this.msgs.push("Updated!");
-    this._getDbVersion();
+    if(navigator.onLine){
+      this.data.setLatest().then(() => this.msgs.push("Updated!"));
+    }
+    else {
+      this.msgs.push("Connect to the interweb and try again");
+    }
   }
 
   private _getDbVersion() {

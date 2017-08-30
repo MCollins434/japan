@@ -1,54 +1,56 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class DataProvider {
   private _data: string = "./assets/data/";
   private ssKey: string = "1fbKWSvOYdtFQBX_EuRiUvvfswLxBvnpvJrsZom9_KVo";
-  private online: boolean = false;
 
-  constructor(public http: Http) {
+  constructor(public http: Http, private storage: Storage) {
     console.log('Hello Locals Provider');
   }
   
-  getHotels(local?: boolean): Promise<any>  {
-    return this._GET("hotels", 1, local);
+  getHotels(): Promise<any>  {
+    return this._GET("hotels");
   }
-  getTranslations(local?: boolean): Promise<any>  {
-    return this._GET("translation", 2, local);
+  getTranslations(): Promise<any>  {
+    return this._GET("translation");
   }
-  getDos(local?: boolean): Promise<any>  {
-    return this._GET("dos", 3, local);   
+  getDos(): Promise<any>  {
+    return this._GET("dos");   
   }
-  getDonts(local?: boolean): Promise<any>  {
-    return this._GET("donts", 4, local);
+  getDonts(): Promise<any>  {
+    return this._GET("donts");
   }
-  getPlaces(local?: boolean): Promise<any>  {
-    return this._GET("places", 5, local);
+  getPlaces(): Promise<any>  {
+    return this._GET("places");
   }
-  getLinks(local?: boolean): Promise<any> {
-    return this._GET("links", 6, local);
+  getLinks(): Promise<any> {
+    return this._GET("links");
   }
-  getFlights(local?: boolean): Promise<any>  {
-    return this._GET("flights", 7, local);
+  getFlights(): Promise<any>  {
+    return this._GET("flights");
   }
-  getDocs(local?: boolean): Promise<any> {
-    return this._GET("docs", 8, local);
+  getDocs(): Promise<any> {
+    return this._GET("docs");
   }
-  getDbVersion(local?: boolean): Promise<any>  {
-    return this._GET("dbversion", 9, local);
+  getDbVersion(): Promise<any>  {
+    return this._GET("dbversion");
   }
-  getAppVersion(local?: boolean): Promise<any>  {
+  getAppVersion(): Promise<any>  {
     return this._getJson("appversion");
   }
 
-  _GET(file: string, sheetNum: number, local?: boolean): Promise<any>  {
-    if(local) {
-      return this._getJson(file);
+  _GET(file: string): Promise<any>  {
+    let bu = "BU"+file;
+    let latest = this.storage.get(file);
+    if(latest){
+      return latest;
     }
     else {
-      return this._getFromGoogle(sheetNum);
+      return this.storage.get(bu);
     }
   }
 
@@ -87,6 +89,51 @@ export class DataProvider {
           }
           resolve(returnArray);
         });
+    });
+  }
+
+  public setFallbacks(): void {
+    let flights = this._getJson("flights");
+    let appversion = this._getJson("appversion");
+    let dbversion = this._getJson("dbversion");
+    let donts = this._getJson("donts");
+    let dos = this._getJson("dos");
+    let hotels = this._getJson("hotels");
+    let links = this._getJson("links");
+    let places = this._getJson("places");
+    let translations = this._getJson("translation");
+
+    this.storage.ready().then(() => {
+      this.storage.set("BUflights", flights);
+      this.storage.set("appversion", appversion);
+      this.storage.set("BUdbversion", dbversion);
+      this.storage.set("BUdonts", donts);
+      this.storage.set("BUdos", dos);
+      this.storage.set("BUhotels", hotels);
+      this.storage.set("BUlinks", links);
+      this.storage.set("BUplaces", places);
+      this.storage.set("BUtranslations", translations);
+    });
+  }
+  public setLatest(): Promise<any> {
+    let flights = this._getFromGoogle(7);
+    let dbversion = this._getFromGoogle(9);
+    let donts = this._getFromGoogle(4);
+    let dos = this._getFromGoogle(3);
+    let hotels = this._getFromGoogle(1);
+    let links = this._getFromGoogle(6);
+    let places = this._getFromGoogle(5);
+    let translations = this._getFromGoogle(2);
+
+    return this.storage.ready().then(() => {
+      this.storage.set("flights", flights);
+      this.storage.set("dbversion", dbversion);
+      this.storage.set("donts", donts);
+      this.storage.set("dos", dos);
+      this.storage.set("hotels", hotels);
+      this.storage.set("links", links);
+      this.storage.set("places", places);
+      this.storage.set("translations", translations);
     });
   }
 }

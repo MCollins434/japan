@@ -13,6 +13,7 @@ import { TranslationsPage } from '../pages/translations/translations';
 import { CustomsPage } from '../pages/customs/customs';
 import { ConversionsPage } from '../pages/conversions/conversions';
 import { PlacesPage } from '../pages/places/places';
+import { PlaceDetailPage } from '../pages/placedetail/placedetail';
 import { HotelsPage } from '../pages/hotels/hotels';
 import { HotelDetailsPage } from '../pages/hoteldetails/hoteldetails';
 import { FlightsPage } from '../pages/flights/flights';
@@ -22,7 +23,6 @@ import { DocsPage } from '../pages/docs/docs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { DbProvider } from '../providers/db/db';
 import { DataProvider } from '../providers/data';
 
 const cloudSettings: CloudSettings = {
@@ -39,6 +39,7 @@ const cloudSettings: CloudSettings = {
     CustomsPage,
     ConversionsPage,
     PlacesPage,
+    PlaceDetailPage,
     HotelsPage,
     HotelDetailsPage,
     FlightsPage,
@@ -60,6 +61,7 @@ const cloudSettings: CloudSettings = {
     CustomsPage,
     ConversionsPage,
     PlacesPage,
+    PlaceDetailPage,
     HotelsPage,
     HotelDetailsPage,
     FlightsPage,
@@ -73,7 +75,6 @@ const cloudSettings: CloudSettings = {
     Network,
     File,
     DataProvider,
-    DbProvider,
     Storage
   ]
 })
