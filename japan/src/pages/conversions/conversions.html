@@ -41,7 +41,7 @@
   </ion-list>
   <br>
   <h5>Quick Currency</h5>
-  <p>Assuming an exchange rate of 1 USD = 109.41 JPY</p>
+  <p>$1.00 = {{rate}} JPY, last updated {{lastUpdated}}</p>
   <ion-list>
     <ion-item *ngFor="let c of cs">
       {{c.yen | currency:'JPY':true}} = {{c.usd | currency:'USD':true}}

@@ -9,17 +9,32 @@
 
 <ion-content padding>
   <h1>COME ON AND SLAM AND WELCOME TO JAPAN</h1>
+  <ion-item>
+    <b>App Version</b>
+    <p>{{appversion}}</p>
+  </ion-item>
 
-  <b>App Version</b>
-  <p>{{appversion}}</p>
-  <b>Db Version</b>
-  <p>{{dbversion}}</p>
-  <b>Connection Status</b>
-  <p>{{connectionstatus}}</p>
-  <b>Platforms Identified</b>
-  <div *ngFor="let plt of plats">
-    {{plt}}
-  </div>
+  <ion-item>
+    <b>Db Version</b>
+    <p>{{dbversion}}</p>
+  </ion-item>
+
+  <ion-item>
+    <b>Storage Driver Found</b>
+    <p>{{driverfound}}</p>
+  </ion-item>
+
+  <ion-item>
+    <b>Connection Status</b>
+    <p>{{connectionstatus}}</p>
+  </ion-item>
+  
+  <ion-item>
+    <b>Platforms Identified</b>
+    <div *ngFor="let plt of plats">
+      {{plt}}
+    </div>
+  </ion-item>
   <div padding>
     <button ion-button color="primary" block (click)="_tryRefresh()">Get Updated Data</button>
   </div>

@@ -19,6 +19,7 @@ import { HotelDetailsPage } from '../pages/hoteldetails/hoteldetails';
 import { FlightsPage } from '../pages/flights/flights';
 import { LinksPage } from '../pages/links/links';
 import { DocsPage } from '../pages/docs/docs';
+import { HelpPage } from '../pages/help/help';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -44,7 +45,8 @@ const cloudSettings: CloudSettings = {
     HotelDetailsPage,
     FlightsPage,
     DocsPage,
-    LinksPage
+    LinksPage,
+    HelpPage
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,8 @@ const cloudSettings: CloudSettings = {
     HotelDetailsPage,
     FlightsPage,
     DocsPage,
-    LinksPage
+    LinksPage,
+    HelpPage
   ],
   providers: [
     StatusBar,

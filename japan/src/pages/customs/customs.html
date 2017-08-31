@@ -13,7 +13,7 @@
 
   <ion-item-group>
     <ion-item-divider color="light">Do</ion-item-divider>
-    <ion-item *ngFor="let do of dos">
+    <ion-item text-wrap *ngFor="let do of dos">
       <b>{{do.summary}}</b>
       <p>{{do.description}}</p>
     </ion-item>

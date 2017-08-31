@@ -19,35 +19,36 @@
 <ion-content padding>
   <ion-list>
 
-    <ion-list-header>
+    <ion-list-header color="dark">
       Tokyo
     </ion-list-header>
     <ion-item text-wrap *ngFor="let place of tokyoPlaces">
       {{place.name}}  <i>{{place.neighborhood}}</i>
+      <br>{{place.description}}
     </ion-item>
 
-    <ion-list-header>
+    <ion-list-header color="dark">
       Hakone
     </ion-list-header>
     <ion-item text-wrap *ngFor="let place of hakonePlaces">
       {{place.name}}
     </ion-item>
 
-    <ion-list-header>
+    <ion-list-header color="dark">
       Hiroshima
     </ion-list-header>
     <ion-item text-wrap *ngFor="let place of hiroshimaPlaces">
       {{place.name}}
     </ion-item>
 
-    <ion-list-header>
+    <ion-list-header color="dark">
       Kyoto
     </ion-list-header>
     <ion-item text-wrap *ngFor="let place of kyotoPlaces">
       {{place.name}}
     </ion-item>
 
-    <ion-list-header>
+    <ion-list-header color="dark">
       Other
     </ion-list-header>
     <ion-item text-wrap *ngFor="let place of otherPlaces">

@@ -8,14 +8,15 @@ import { DataProvider } from '../../providers/data';
   templateUrl: 'links.html',
 })
 export class LinksPage {
-  links: any;
+  links: any[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public data: DataProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LinksPage');
-    this.links = this.data.getLinks();
+    this.data.getLinks().then((resp) => {
+      this.links = resp;
+    })
   }
-
 }

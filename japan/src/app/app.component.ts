@@ -12,6 +12,7 @@ import { HotelsPage } from '../pages/hotels/hotels';
 import { FlightsPage } from '../pages/flights/flights';
 import { LinksPage } from '../pages/links/links';
 import { DocsPage } from '../pages/docs/docs';
+import { HelpPage } from '../pages/help/help';
 
 import { DataProvider } from '../providers/data';
 
@@ -39,7 +40,8 @@ export class MyApp {
       { title: 'Docs', component: DocsPage },
       { title: 'Translations', component: TranslationsPage },
       { title: 'Customs', component: CustomsPage },
-      { title: 'Conversions', component: ConversionsPage }
+      { title: 'Conversions', component: ConversionsPage },
+      { title: 'Help', component: HelpPage }
     ];
 
   }
@@ -48,7 +50,6 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.db.setFallbacks();
     });
   }
 

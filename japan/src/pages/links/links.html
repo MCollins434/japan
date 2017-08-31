@@ -19,7 +19,7 @@
 <ion-content padding>
   <ion-list>
     <ion-item *ngFor="let link of links">
-      {{link.name}}
+      <a href={{link.url}}>{{link.name}}</a>
     </ion-item>
   </ion-list>
 </ion-content>

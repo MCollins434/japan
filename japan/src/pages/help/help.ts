@@ -2,24 +2,23 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the PlacedetailPage page.
+ * Generated class for the HelpPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 
 @Component({
-  selector: 'page-placedetail',
-  templateUrl: 'placedetail.html',
+  selector: 'page-help',
+  templateUrl: 'help.html',
 })
-export class PlaceDetailPage {
-  place: any;
+export class HelpPage {
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.place = navParams.get('place');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PlacedetailPage');
+    console.log('ionViewDidLoad HelpPage');
   }
 
 }

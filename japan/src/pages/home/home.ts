@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
 import { Deploy } from '@ionic/cloud-angular';
-//import { File } from '@ionic-native/file';
+import { Storage } from '@ionic/storage';
 
 import { DataProvider } from '../../providers/data';
 
@@ -13,6 +13,7 @@ import { DataProvider } from '../../providers/data';
 export class HomePage {
   appversion: string;
   dbversion: string;
+  driverfound:string;
   connectSubscription: any;
   disconnectSubscription: any;
   connectionstatus: string;
@@ -22,17 +23,13 @@ export class HomePage {
   freeSpace: string;
   appDir: string;
 
-  constructor(public navCtrl: NavController, public data: DataProvider,
+  constructor(public navCtrl: NavController, public data: DataProvider, public storage: Storage,
     private network: Network, public platform: Platform, public deploy: Deploy) {
     this.msgs = [];
     this.plats = this.platform.platforms();
-    this._getDbVersion();
-    /*if(!this.platform.is('cordova')){
-      this.dataDir = this.file.dataDirectory;
-      this.appDir = this.file.applicationDirectory;
-      this.file.getFreeDiskSpace().then((value) => {
-        this.freeSpace = ''+value;
-      });*/
+    this.driverfound = this.storage.driver;
+    this.data.setFallbacks();
+
   }
 
 
@@ -81,7 +78,9 @@ export class HomePage {
     this.msgs.push("Trying refresh...");
     this.msgs.push("Checking network connection...");
     if(navigator.onLine){
-      this.data.setLatest().then(() => this.msgs.push("Updated!"));
+      this.data.setLatest();
+      this.msgs.push("Updated!");
+      this._getDbVersion();
     }
     else {
       this.msgs.push("Connect to the interweb and try again");
@@ -90,13 +89,15 @@ export class HomePage {
 
   private _getDbVersion() {
     this.data.getDbVersion().then((resp) => {
-      this.dbversion = resp[0].version;
+      this.dbversion = resp;
     });
   }
 
   private _getAppVersion() {
     this.data.getAppVersion().then((resp) => {
-      this.appversion = resp[0].version;
+      let resps = resp;
+      let v = resps[0].version;
+      this.appversion = v;
     });
   }
 

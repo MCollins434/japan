@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
+import ExRate from "../models/exrate";
 
 @Injectable()
 export class DataProvider {
@@ -11,56 +12,72 @@ export class DataProvider {
   constructor(public http: Http, private storage: Storage) {
     console.log('Hello Locals Provider');
   }
-  
-  getHotels(): Promise<any>  {
+
+  getHotels(): any {
     return this._GET("hotels");
   }
-  getTranslations(): Promise<any>  {
+  getTranslations(): any {
     return this._GET("translation");
   }
-  getDos(): Promise<any>  {
-    return this._GET("dos");   
+  getDos(): any {
+    return this._GET("dos");
   }
-  getDonts(): Promise<any>  {
+  getDonts(): any {
     return this._GET("donts");
   }
-  getPlaces(): Promise<any>  {
+  getPlaces(): any {
     return this._GET("places");
   }
-  getLinks(): Promise<any> {
+  getLinks(): any {
     return this._GET("links");
   }
-  getFlights(): Promise<any>  {
+  getFlights(): any {
     return this._GET("flights");
   }
-  getDocs(): Promise<any> {
+  getDocs(): any {
     return this._GET("docs");
   }
-  getDbVersion(): Promise<any>  {
-    return this._GET("dbversion");
+  getDbVersion(): any {
+    return this._GET("dbversion").then((resp) => {
+      return resp;
+    });
   }
-  getAppVersion(): Promise<any>  {
-    return this._getJson("appversion");
-  }
-
-  _GET(file: string): Promise<any>  {
-    let bu = "BU"+file;
-    let latest = this.storage.get(file);
-    if(latest){
-      return latest;
-    }
-    else {
-      return this.storage.get(bu);
-    }
+  getAppVersion(): any {
+    return this._getJson("appversion").then((resp) => {
+      return resp;
+    });
   }
 
-  _getJson(file: string): Promise<any>  {
+  getExRate(): any {
+    return this._GET("exrate").then((resp) => {
+      return resp;
+    });
+  }
+
+  _GET(file: string): any {
+    let bu = "BU" + file;
+
+    // this.storage.ready().then(() => {
+    return this.storage.get(file).then((value) => {
+      if (value) {
+        return JSON.parse(value);
+      }
+      else {
+        return this.storage.get(bu).then((value) => {
+          return JSON.parse(value);
+        });
+      }
+    });
+    // });
+  }
+
+  _getJson(file: string): Promise<any> {
     return new Promise(resolve => {
       this.http.get(this._data + file + ".json")
-      .map((response) => response.json())
-      .subscribe((data) => {
-        resolve(data);
-      })
+        .map((response) => response.json())
+        .subscribe((data) => {
+          resolve(data);
+        })
     })
   }
 
@@ -93,47 +110,98 @@ export class DataProvider {
   }
 
   public setFallbacks(): void {
-    let flights = this._getJson("flights");
-    let appversion = this._getJson("appversion");
-    let dbversion = this._getJson("dbversion");
-    let donts = this._getJson("donts");
-    let dos = this._getJson("dos");
-    let hotels = this._getJson("hotels");
-    let links = this._getJson("links");
-    let places = this._getJson("places");
-    let translations = this._getJson("translation");
-
+    let baseExRate: ExRate;
+    baseExRate = {rate: 110.15, date: "2017-08-30"}  
     this.storage.ready().then(() => {
-      this.storage.set("BUflights", flights);
-      this.storage.set("appversion", appversion);
-      this.storage.set("BUdbversion", dbversion);
-      this.storage.set("BUdonts", donts);
-      this.storage.set("BUdos", dos);
-      this.storage.set("BUhotels", hotels);
-      this.storage.set("BUlinks", links);
-      this.storage.set("BUplaces", places);
-      this.storage.set("BUtranslations", translations);
+      this.storage.set("BUexrate", JSON.stringify(baseExRate));
+      this._getJson("hotels").then((resp) => {
+        let hotels = resp;
+        this.storage.set("BUhotels", JSON.stringify(hotels));
+      });
+      this._getJson("translation").then((resp) => {
+        let translations = resp;
+        this.storage.set("BUtranslation", JSON.stringify(translations));
+      });
+      this._getJson("dos").then((resp) => {
+        let dos = resp;
+        this.storage.set("BUdos", JSON.stringify(dos));
+      });
+      this._getJson("donts").then((resp) => {
+        let donts = resp;
+        this.storage.set("BUdonts", JSON.stringify(donts));
+      });
+      this._getJson("places").then((resp) => {
+        let places = resp;
+        this.storage.set("BUplaces", JSON.stringify(places));
+      });
+      this._getJson("links").then((resp) => {
+        let links = resp;
+        this.storage.set("BUlinks", JSON.stringify(links));
+      });
+      this._getJson("flights").then((resp) => {
+        let flights = resp;
+        this.storage.set("BUflights", JSON.stringify(flights));
+      });
+      this._getJson("dbversion").then((resp) => {
+        let dbv = resp;
+        this.storage.set("BUdbversion", JSON.stringify(dbv));
+      });
     });
   }
-  public setLatest(): Promise<any> {
-    let flights = this._getFromGoogle(7);
-    let dbversion = this._getFromGoogle(9);
-    let donts = this._getFromGoogle(4);
-    let dos = this._getFromGoogle(3);
-    let hotels = this._getFromGoogle(1);
-    let links = this._getFromGoogle(6);
-    let places = this._getFromGoogle(5);
-    let translations = this._getFromGoogle(2);
+  public setLatest(): void {
 
-    return this.storage.ready().then(() => {
-      this.storage.set("flights", flights);
-      this.storage.set("dbversion", dbversion);
-      this.storage.set("donts", donts);
-      this.storage.set("dos", dos);
-      this.storage.set("hotels", hotels);
-      this.storage.set("links", links);
-      this.storage.set("places", places);
-      this.storage.set("translations", translations);
+    this.storage.ready().then(() => {
+      this._getFromGoogle(9).then((resp) => {
+        let dbv = resp[0].version;
+        this.storage.set("dbversion", JSON.stringify(dbv));
+      });
+      this._getFromGoogle(1).then((resp) => {
+        let hotels = resp;
+        this.storage.set("hotels", JSON.stringify(hotels));
+      });
+      this._getFromGoogle(2).then((resp) => {
+        let translations = resp;
+        this.storage.set("translation", JSON.stringify(translations));
+      });
+      this._getFromGoogle(3).then((resp) => {
+        let dos = resp;
+        this.storage.set("dos", JSON.stringify(dos));
+      });
+      this._getFromGoogle(4).then((resp) => {
+        let donts = resp;
+        this.storage.set("donts", JSON.stringify(donts));
+      });
+      this._getFromGoogle(5).then((resp) => {
+        let places = resp;
+        this.storage.set("places", JSON.stringify(places));
+      });
+      this._getFromGoogle(6).then((resp) => {
+        let links = resp;
+        this.storage.set("links", JSON.stringify(links));
+      });
+      this._getFromGoogle(7).then((resp) => {
+        let flights = resp;
+        this.storage.set("flights", JSON.stringify(flights));
+      });
+      this.getExchangeRate().then((resp) => {
+        let exr: ExRate;
+        exr = {rate: resp.rates.JPY as number , date: resp.dates}
+        this.storage.set("exrate", JSON.stringify(exr));
+      });
+    });
+  }
+
+  getExchangeRate(): Promise<any> {
+    let url = "http://api.fixer.io/latest?base=USD";
+    return new Promise(resolve => {
+      this.http.get(url)
+        .map(res => res.json())
+        .subscribe(data => {
+          console.log('Raw Data', data);
+          let returnObj: {date: string, rate:string};
+          returnObj = {date: data.date, rate: data.rates.JPY};
+          resolve(returnObj);
+        });
     });
   }
 }
