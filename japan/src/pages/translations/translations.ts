@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 import Word from '../../models/word';
 import { DataProvider } from '../../providers/data';
@@ -20,7 +20,8 @@ export class TranslationsPage {
   s: string = "S".toUpperCase();
   searchQuery: string = '';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public data: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public data: DataProvider, public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -75,5 +76,14 @@ export class TranslationsPage {
     else {
       this.refresh();
     }
+  }
+
+  showChars(word: Word) { 
+    let alert = this.alertCtrl.create({
+      title: word.jchars,
+      subTitle: word.japanese,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }

@@ -22,7 +22,7 @@
     <ion-list-header>
       Phrases
     </ion-list-header>
-    <ion-item text-wrap *ngFor="let word of phraseWords">
+    <ion-item text-wrap *ngFor="let word of phraseWords" (click)="showChars(word)">
       {{word.english}}<br>
       {{word.japanese}}<br>
       <p>{{word.jchars}}</p>
@@ -30,7 +30,7 @@
     <ion-list-header>
       Food
     </ion-list-header>
-    <ion-item text-wrap *ngFor="let word of foodWords">
+    <ion-item text-wrap *ngFor="let word of foodWords" (click)="showChars(word)">
       {{word.english}}<br>
       {{word.japanese}}<br>
       <p>{{word.jchars}}</p>
@@ -38,7 +38,7 @@
     <ion-list-header>
       Numbers
     </ion-list-header>
-    <ion-item *ngFor="let word of numberWords">
+    <ion-item *ngFor="let word of numberWords" (click)="showChars(word)">
       {{word.english}}<br>
       {{word.japanese}}<br>
       <p>{{word.jchars}}</p>
@@ -46,7 +46,7 @@
     <ion-list-header>
       Others
     </ion-list-header>
-    <ion-item *ngFor="let word of otherWords">
+    <ion-item *ngFor="let word of otherWords" (click)="showChars(word)">
       {{word.english}}<br>
       {{word.japanese}}<br>
       <p>{{word.jchars}}</p>
