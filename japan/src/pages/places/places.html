@@ -17,43 +17,19 @@
 
 
 <ion-content padding>
+  <ion-searchbar (ionInput)="getPlaces($event)"></ion-searchbar>
   <ion-list>
-
-    <ion-list-header color="dark">
-      Tokyo
-    </ion-list-header>
-    <ion-item text-wrap *ngFor="let place of tokyoPlaces">
-      {{place.name}}  <i>{{place.neighborhood}}</i>
-      <br>{{place.description}}
+    <ion-item *ngFor="let c of cities; let i=index" text-wrap (click)="toggleCity('idx'+i)" [ngClass]="{active: isCityShown('idx'+i)}">
+      <h4>
+        {{c.name}}
+        <ion-icon color="success" item-right [name]="isCityShown('idx'+i) ? 'arrow-dropdown':'arrow-dropright'"></ion-icon>
+      </h4>
+      <ion-list *ngIf="isCityShown('idx'+i)">
+        <ion-item *ngFor="let p of c.places" (click)="openDetails(p)">
+          {{p.name}} <i>{{p.neighborhood}}</i>
+          <br>{{p.description}}
+        </ion-item>
+      </ion-list>
     </ion-item>
-
-    <ion-list-header color="dark">
-      Hakone
-    </ion-list-header>
-    <ion-item text-wrap *ngFor="let place of hakonePlaces">
-      {{place.name}}
-    </ion-item>
-
-    <ion-list-header color="dark">
-      Hiroshima
-    </ion-list-header>
-    <ion-item text-wrap *ngFor="let place of hiroshimaPlaces">
-      {{place.name}}
-    </ion-item>
-
-    <ion-list-header color="dark">
-      Kyoto
-    </ion-list-header>
-    <ion-item text-wrap *ngFor="let place of kyotoPlaces">
-      {{place.name}}
-    </ion-item>
-
-    <ion-list-header color="dark">
-      Other
-    </ion-list-header>
-    <ion-item text-wrap *ngFor="let place of otherPlaces">
-      {{place.name}} (<i>{{place.city}}</i>)
-    </ion-item>
-    
   </ion-list>
 </ion-content>

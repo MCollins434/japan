@@ -8,7 +8,7 @@
         "in": 0.625,
         "out": 0.4166666666666667,
         "confirmation": "268185-314893388",
-        "paidadv": "partial",
+        "paid": "partial",
         "site": "HostelWorld"
     },
     {
@@ -33,7 +33,7 @@
         "in": 0.5833333333333334,
         "out": 0.4583333333333333,
         "confirmation": 140745139219,
-        "paidadv": "full",
+        "paid": "full",
         "site": "Hotels.com"
     },
     {
@@ -45,7 +45,7 @@
         "phone": 81753422444,
         "email": "kyoto@kshouse.jp",
         "confirmation": "5536-322678100",
-        "paidadv": "partial",
+        "paid": "partial",
         "site": "HostelWorld"
     },
     {
@@ -58,7 +58,7 @@
         "in": 0.625,
         "out": 0.4583333333333333,
         "confirmation": "HM4ZRFCWQ8",
-        "paidadv": "full",
+        "paid": "full",
         "site": "AirBnB"
     }
 ]

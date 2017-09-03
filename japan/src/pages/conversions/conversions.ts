@@ -26,22 +26,19 @@ export class ConversionsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public data: DataProvider) {
     let yens = [500, 1000, 2000,3000,4000, 5000, 10000, 12000,15000, 20000];
-    yens.map((yen) => {
-      this.cs.push({usd: this.getUSD(yen), yen: yen});
+    this.updateExRate().then(() => {
+      yens.map((yen) => {
+        this.cs.push({usd: this.getUSD(yen), yen: yen});
+      });
     });
-    this.lastUpdated = "2017-08-30";
-    this.rate = 110.15;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConversionsPage');
-    if(navigator.onLine) {
-      this.updateExRate();
-    };
     this.yen = 500;
     this.celc = 30;
     this.km = 5;
-    this.convert();
+    this.updateExRate();
   }
 
   getUSD(yen: any): number {
@@ -54,9 +51,10 @@ export class ConversionsPage {
   }
 
   updateExRate() {
-    this.data.getExchangeRate().then((resp) => {
+    return this.data.getExchangeRate().then((resp) => {
       this.lastUpdated = resp.date;
       this.rate = resp.rate;
+      this.convert();
     });
   }
 }

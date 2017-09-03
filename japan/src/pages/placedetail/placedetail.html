@@ -7,27 +7,38 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>placedetail</ion-title>
+    <ion-title>{{place.name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
-  <b>Name</b>
-  <br>{{place.name}}
-  <br><b>City</b>
-  <br>{{place.city}}
-  <br><b>Address</b>
-  <br>{{place.address}}
-  <br><b>Description</b>
-  <br>{{place.description}}
-  <br><b>Opens</b>
-  <br>{{place.opentime}}
-  <br><b>Closes</b>
-  <br>{{place.closetime}}
-  <br><b>Website</b>
-  <br>{{place.website}}
-  <br><b>Phone</b>
-  <br>{{place.phone}}
+  <ion-item text-wrap>
+    <b>City</b>
+    <br>{{place.city}}
+  </ion-item>
+  <ion-item text-wrap>
+    <b>Address</b>
+    <br>{{place.address}}
+  </ion-item>
+  <ion-item text-wrap>
+    <b>Description</b>
+    <br>{{place.description}}
+  </ion-item>
+  <ion-item text-wrap>
+    <b>Opens</b>
+    <br>{{place.opentime}}
+  </ion-item>
+  <ion-item text-wrap>
+    <b>Closes</b>
+    <br>{{place.closetime}}
+  </ion-item>
+  <ion-item text-wrap>
+    <b>Website</b>
+    <br>{{place.website}}
+  </ion-item>
+  <ion-item text-wrap>
+    <b>Phone</b>
+    <br>{{place.phone}}
+  </ion-item>
 </ion-content>

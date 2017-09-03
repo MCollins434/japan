@@ -185,7 +185,7 @@ export class DataProvider {
       });
       this.getExchangeRate().then((resp) => {
         let exr: ExRate;
-        exr = {rate: resp.rates.JPY as number , date: resp.dates}
+        exr = {rate: resp.rate as number , date: resp.date}
         this.storage.set("exrate", JSON.stringify(exr));
       });
     });

@@ -14,8 +14,6 @@ import { LinksPage } from '../pages/links/links';
 import { DocsPage } from '../pages/docs/docs';
 import { HelpPage } from '../pages/help/help';
 
-import { DataProvider } from '../providers/data';
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -27,7 +25,7 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar,
-    public splashScreen: SplashScreen, private db: DataProvider) {
+    public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation

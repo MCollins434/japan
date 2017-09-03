@@ -15,41 +15,21 @@
 
 </ion-header>
 
-
 <ion-content padding>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
   <ion-list>
-    <ion-list-header>
-      Phrases
-    </ion-list-header>
-    <ion-item text-wrap *ngFor="let word of phraseWords" (click)="showChars(word)">
-      {{word.english}}<br>
-      {{word.japanese}}<br>
-      <p>{{word.jchars}}</p>
-    </ion-item>
-    <ion-list-header>
-      Food
-    </ion-list-header>
-    <ion-item text-wrap *ngFor="let word of foodWords" (click)="showChars(word)">
-      {{word.english}}<br>
-      {{word.japanese}}<br>
-      <p>{{word.jchars}}</p>
-    </ion-item>
-    <ion-list-header>
-      Numbers
-    </ion-list-header>
-    <ion-item *ngFor="let word of numberWords" (click)="showChars(word)">
-      {{word.english}}<br>
-      {{word.japanese}}<br>
-      <p>{{word.jchars}}</p>
-    </ion-item>
-    <ion-list-header>
-      Others
-    </ion-list-header>
-    <ion-item *ngFor="let word of otherWords" (click)="showChars(word)">
-      {{word.english}}<br>
-      {{word.japanese}}<br>
-      <p>{{word.jchars}}</p>
+    <ion-item *ngFor="let c of categories; let i=index" text-wrap (click)="toggleLevel1('idx'+i)" [ngClass]="{active: isLevel1Shown('idx'+i)}">
+      <h4>
+      {{c.category}}
+      <ion-icon color="success" item-right [name]="isLevel1Shown('idx'+i) ? 'arrow-dropdown': 'arrow-dropright'"></ion-icon>
+      </h4>
+      <ion-list *ngIf="isLevel1Shown('idx'+i)">
+        <ion-item *ngFor="let w of c.words" (click)="showChars(w)" text-wrap>
+          {{w.english}}<br>
+          {{w.japanese}}<br>
+          <p>{{w.jchars}}</p>
+        </ion-item>
+      </ion-list>
     </ion-item>
   </ion-list>
 </ion-content>

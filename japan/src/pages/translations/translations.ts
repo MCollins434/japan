@@ -9,16 +9,14 @@ import { DataProvider } from '../../providers/data';
   templateUrl: 'translations.html',
 })
 export class TranslationsPage {
+  categories: WordCategory[] = [];
   words: Word[];
-  foodWords: Word[];
-  phraseWords: Word[];
-  numberWords: Word[];
-  otherWords: Word[];
   food: string = "food";
   phrase: string = "phrase";
   number: string = "number";
   s: string = "S".toUpperCase();
   searchQuery: string = '';
+  showLevel1 = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public data: DataProvider, public alertCtrl: AlertController) {
@@ -30,22 +28,22 @@ export class TranslationsPage {
   }
 
   _filterList(words: Word[]) {
-    this.foodWords = words.filter((word) =>
+    let foodWords = words.filter((word) =>
       word.category.toUpperCase() == this.food.toUpperCase() ||
       word.category.toUpperCase() == this.food.toUpperCase() + this.s
     );
 
-    this.phraseWords = words.filter((word) =>
+    let phraseWords = words.filter((word) =>
       word.category.toUpperCase() == this.phrase.toUpperCase() ||
       word.category.toUpperCase() == this.phrase.toUpperCase() + this.s
     );
 
-    this.numberWords = words.filter((word) =>
+    let numberWords = words.filter((word) =>
       word.category.toUpperCase() == this.number.toUpperCase() ||
       word.category.toUpperCase() == this.number.toUpperCase() + this.s
     );
 
-    this.otherWords = words.filter((word) => {
+    let otherWords = words.filter((word) => {
       word.category.toUpperCase() != this.food.toUpperCase()
         && word.category.toUpperCase() != this.food.toUpperCase() + this.s
         && word.category.toUpperCase() != this.phrase.toUpperCase()
@@ -53,8 +51,18 @@ export class TranslationsPage {
         && word.category.toUpperCase() != this.number.toUpperCase()
         && word.category.toUpperCase() != this.number.toUpperCase() + this.s
     });
+
+    let foods: WordCategory = { category: "Foods", words: foodWords };
+    let phrases: WordCategory = { category: "Phrases", words: phraseWords };
+    let numbers: WordCategory = { category: "Numbers", words: numberWords };
+    let others: WordCategory = { category: "Others", words: otherWords };
+
+    this.categories.push(phrases);
+    this.categories.push(foods);
+    this.categories.push(numbers);
+    this.categories.push(others);
   }
-  
+
   refresh() {
     this.data.getTranslations().then((response) => {
       this.words = response;
@@ -78,7 +86,7 @@ export class TranslationsPage {
     }
   }
 
-  showChars(word: Word) { 
+  showChars(word: Word) {
     let alert = this.alertCtrl.create({
       title: word.jchars,
       subTitle: word.japanese,
@@ -86,4 +94,21 @@ export class TranslationsPage {
     });
     alert.present();
   }
+
+  toggleLevel1(idx) {
+    if(this.isLevel1Shown(idx)) {
+      this.showLevel1 = null; 
+    } else {
+      this.showLevel1 = idx;
+    }
+  }
+
+  isLevel1Shown(idx) {
+    return this.showLevel1 === idx;
+  }
+}
+
+export class WordCategory {
+  category: string;
+  words: Word[];
 }

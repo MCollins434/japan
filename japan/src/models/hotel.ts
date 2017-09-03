@@ -9,7 +9,7 @@ export default class Hotel {
     email?: string;
     checkin?: string;
     checkout?: string;
-    paidadv?: string;
+    paid?: string;
     site?: string;
     confirmation?: string;
     nearestStation?: string;
